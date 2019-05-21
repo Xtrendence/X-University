@@ -1,11 +1,21 @@
 $(document).ready(function() {
+	
+	// Get the SVG code of the icons that will be used later on.
+	
 	var other_icon = $(".other-icon").prop("outerHTML");
 	var trash_icon = $(".trash-icon").prop("outerHTML");
 	var file_icon = $(".file-icon").prop("outerHTML");
+	
+	$(".page").on("click", function() {
+		hide_all();
+	});
 	$(".tile").on("click", function() {
 		var page = $(this).attr("id");
 		show_page(page);
 	});
+	
+	// Navbar Functionality
+	
 	$(".navbar .back-icon").on("click", function() {
 		var current_page = $(".page.active").attr("data-page");
 		if(["finances", "shopping", "documents", "settings", "account"].includes(current_page)) {
@@ -23,9 +33,9 @@ $(document).ready(function() {
 			show_menu(true);
 		}
 	});
-	$(".page").on("click", function() {
-		hide_all();
-	});
+	
+	// Finances Page Functionality
+	
 	$(".balance-category, .balance-category-wrapper .arrow-icon").on("click", function() {
 		if($(this).parent().hasClass("active")) {
 			$(this).parent().removeClass("active").children("div").hide();
@@ -293,6 +303,9 @@ $(document).ready(function() {
 			open_popup('<button class="popup-label">Are you sure?</button><button class="popup-confirm" id="' + id + '" data-action="delete-transaction">Delete</button>');
 		}
 	});
+	
+	// Shopping Page Functionality
+	
 	$(".shopping .category-item").on("click", function() {
 		var category = $(this).attr("data-category");
 		$(".shopping .category-item").removeClass("active");
@@ -401,6 +414,9 @@ $(document).ready(function() {
 		$(".shopping-add-input.details").val(details);
 		$(".shopping-add-button." + category).addClass("active");
 	});
+	
+	// Notes Page Functionality
+	
 	$(".notes-toolbar .add-icon").on("click", function() {
 		if($(this).parent().hasClass("lecture")) {
 			$(".notes-upload-file.lecture").trigger("click");
@@ -505,6 +521,9 @@ $(document).ready(function() {
 			open_popup('<input type="text" class="popup-input" placeholder="Title..."><button class="popup-confirm" id="' + id + '" data-action="rename-note" data-category="' + category + '">Rename</button>');
 		}
 	});
+	
+	// Popup Functionality
+	
 	$(".popup-top .close-icon, .popup-overlay").on("click", function() {
 		$(".popup-wrapper, .popup-overlay, .balance-edit-wrapper, .transaction-add-wrapper, .shopping-add-wrapper").hide();
 		$(".popup-bottom").html("");
@@ -634,6 +653,9 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	// Reminders Page Functionality
+	
 	$(".reminder-search").on("keyup", function() {
 		var search = $(this).val().toLowerCase();
 		if(search.trim().length != 0) {
@@ -643,17 +665,6 @@ $(document).ready(function() {
 		}
 		else {
 			$(".reminder-item").show().removeAttr("style");
-		}
-	});
-	$(".files-search").on("keyup", function() {
-		var search = $(this).val().toLowerCase();
-		if(search.trim().length != 0) {
-			$(".file-tile").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(search) > -1);
-			});
-		}
-		else {
-			$(".file-tile").show().removeAttr("style");
 		}
 	});
 	$(".reminder-text.input").keydown(function(e) {
@@ -684,6 +695,20 @@ $(document).ready(function() {
 				}
 			}
 		});
+	});
+	
+	// Files Page Functionality
+	
+	$(".files-search").on("keyup", function() {
+		var search = $(this).val().toLowerCase();
+		if(search.trim().length != 0) {
+			$(".file-tile").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(search) > -1);
+			});
+		}
+		else {
+			$(".file-tile").show().removeAttr("style");
+		}
 	});
 	$(".files-toolbar .upload-icon").on("click", function() {
 		$(".files-upload-input").trigger("click");
@@ -730,17 +755,9 @@ $(document).ready(function() {
 			open_popup('<input type="text" class="popup-input" placeholder="Filename..."><button class="popup-confirm" id="' + id + '" data-action="rename-file">Rename</button>');
 		}
 	});
-	$(".contact-search").on("keyup", function() {
-		var search = $(this).val().toLowerCase();
-		if(search.trim().length != 0) {
-			$(".contact-card").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(search) > -1);
-			});
-		}
-		else {
-			$(".contact-card").show().removeAttr("style");
-		}
-	});
+	
+	// Account Page Functionality
+	
 	$(".account-button.logout").on("click", function() {
 		$.ajax({
 			url: "./scripts/process.php",
@@ -781,6 +798,9 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	// Settings Page Functionality
+	
 	$(".settings-choice").on("click", function() {
 		var choice = $(this).attr("data-choice");
 		if($(this).hasClass("theme")) {
@@ -805,6 +825,9 @@ $(document).ready(function() {
 		var action = $(this).attr("data-action");
 		open_popup('<button class="popup-label">Are you sure?</button><button class="popup-confirm" id="' + action + '" data-action="reset-page">Delete</button>');
 	});
+	
+	// QoL Improvements, allowing the user to press "Enter" to submit forms.
+	
 	$(window).keydown(function(e) {
 		if(e.which == 13) {
 			if($(".popup-wrapper").is(":visible")) {
@@ -824,6 +847,41 @@ $(document).ready(function() {
 			}
 		}
 	});
+	
+	// Page Functions
+	
+	function show_page(page) {
+		$(".page").hide().removeClass("active");
+		$(".page." + page).show().addClass("active");
+		$(".navbar-title").html(ucfirst(page));
+		$(".navbar .back-icon").show().attr("id", page);
+		if(page == "home") {
+			$(".navbar .back-icon").hide();
+		}
+		else if(page == "finances") {
+			fetch_balance();
+		}
+		else if(page == "shopping") {
+			$(".shopping .category-item.essentials").trigger("click");
+			fetch_shopping_list();
+		}
+		else if(page == "notes") {
+			fetch_notes("lecture");
+			fetch_notes("revision");
+		}
+		else if(page == "reminders") {
+			fetch_reminders();
+		}
+		else if(page == "files") {
+			fetch_files();
+		}
+		else if(page == "settings") {
+			fetch_settings();
+		}
+	}
+	
+	// Finances Page Functions
+	
 	function fetch_transactions() {
 		$.ajax({
 			url: "./scripts/process.php",
@@ -1013,6 +1071,9 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	// Shopping Page Functions
+	
 	function fetch_shopping_list() {
 		$.ajax({
 			url: "./scripts/process.php",
@@ -1052,6 +1113,9 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	// Files Page Functions
+	
 	function fetch_files() {
 		$.ajax({
 			url: "./scripts/process.php",
@@ -1067,6 +1131,9 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	// Reminders Page Functions
+	
 	function toggle_reminder(id) {
 		$.ajax({
 			url: "./scripts/process.php",
@@ -1119,6 +1186,26 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	// Notes Page Functions
+	
+	function fetch_notes(category) {
+		$.ajax({
+			url: "./scripts/process.php",
+			type: "POST", 
+			data: { action: "fetch-notes", category: category },
+			success: function(data) {
+				var notes = JSON.parse(data);
+				$(".notes-list." + category).html("");
+				$.each(notes, function(key) {
+					$(".notes-list." + category).append('<div class="note-list-item" id="' + notes[key] + '"><button class="title">' + notes[key] + '</button>' + other_icon + '</div>');
+				});
+			}
+		})
+	}
+	
+	// Settings Page Functions
+	
 	function fetch_settings() {
 		$.ajax({
 			url: "./scripts/process.php",
@@ -1132,6 +1219,9 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+	// Popups & Menu Functions
+	
 	function open_popup(html) {
 		$(".popup-overlay, .popup-wrapper").show();
 		$(".popup-bottom").html(html);
@@ -1174,49 +1264,9 @@ $(document).ready(function() {
 			}, 400);
 		}
 	}
-	function show_page(page) {
-		$(".page").hide().removeClass("active");
-		$(".page." + page).show().addClass("active");
-		$(".navbar-title").html(ucfirst(page));
-		$(".navbar .back-icon").show().attr("id", page);
-		if(page == "home") {
-			$(".navbar .back-icon").hide();
-		}
-		else if(page == "finances") {
-			fetch_balance();
-		}
-		else if(page == "shopping") {
-			$(".shopping .category-item.essentials").trigger("click");
-			fetch_shopping_list();
-		}
-		else if(page == "notes") {
-			fetch_notes("lecture");
-			fetch_notes("revision");
-		}
-		else if(page == "reminders") {
-			fetch_reminders();
-		}
-		else if(page == "files") {
-			fetch_files();
-		}
-		else if(page == "settings") {
-			fetch_settings();
-		}
-	}
-	function fetch_notes(category) {
-		$.ajax({
-			url: "./scripts/process.php",
-			type: "POST", 
-			data: { action: "fetch-notes", category: category },
-			success: function(data) {
-				var notes = JSON.parse(data);
-				$(".notes-list." + category).html("");
-				$.each(notes, function(key) {
-					$(".notes-list." + category).append('<div class="note-list-item" id="' + notes[key] + '"><button class="title">' + notes[key] + '</button>' + other_icon + '</div>');
-				});
-			}
-		})
-	}
+	
+	// Other Functions
+	
 	function separate_thousands(number) {
 		return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}

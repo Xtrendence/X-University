@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	
+	// Login Page Functionality
+	
 	$(".remember-button").on("click", function() {
 		if($(this).hasClass("active")) {
 			$(this).removeClass("active");
@@ -29,6 +32,9 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	// Other Functions
+	
 	function notify(title, description, color, duration) {
 		var build = $('<div class="notification-wrapper noselect"><div class="notification-title-wrapper"><span class="notification-title">' + title + '</span></div><div class="notification-description-wrapper"><span class="notification-description">' + description + '</span></div></div>');
 		$(".notification-area").show().append(build);
