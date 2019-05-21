@@ -10,4 +10,5 @@ A website to keep track of everything related to your life while studying a cour
 # Default Login
 
 Username: admin
+
 Password: admin
