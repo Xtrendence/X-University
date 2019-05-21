@@ -1,8 +1,6 @@
 # X:/University
 A website to keep track of everything related to your life while studying a course in university. 
 
-- There aren't too many validation checks on the server-side PHP code as this is meant to be used privately rather than publicly. 
-
 - There aren't too many validation checks on the server-side PHP code as this is **meant to be used privately rather than publicly**. 
 
 - Shopping lists, reminders, settings etc. are stored in **JSON format** in ".config" files in "/source/cfg/", making it easy to move everything between computers without having to reconfigure everything every time.
