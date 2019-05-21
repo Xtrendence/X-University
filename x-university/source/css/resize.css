@@ -29,7 +29,7 @@
 		display:inline-block;
 		width:22%;
 	}
-	.category-item#essentials {
+	.category-item.essentials {
 		width:34%;
 	}
 	.shopping-toolbar {
