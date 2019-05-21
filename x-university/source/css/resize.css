@@ -1,0 +1,246 @@
+@media screen and (max-width:1050px) {
+	.tiles-wrapper {
+		width:calc(100% - 13px);
+		padding-left:6px;
+	}
+	.tile {
+		width:calc(33.33333vw - 26.5px);
+	}
+}
+@media screen and (max-width:975px) {
+	.course-detail {
+		width:33.33333%;
+	}
+	.course-detail.duration {
+		display:none;
+	}
+}
+@media screen and (max-width:950px) {
+	.category-wrapper {
+		display:block;
+		position:relative;
+		width:calc(100% - 40px);
+		top:0;
+		left:0;
+		font-size:0;
+		margin:20px auto 0 auto;
+	}
+	.category-item {
+		display:inline-block;
+		width:22%;
+	}
+	.category-item#essentials {
+		width:34%;
+	}
+	.shopping-toolbar {
+		width:calc(100% - 40px);
+		position:relative;
+		display:block;
+		width:calc(100% - 40px);
+		top:0;
+		right:0;
+		margin:20px auto 0 auto;
+	}
+	.shopping-wrapper {
+		position:relative;
+		display:block;
+		width:calc(100% - 80px);
+		top:0;
+		right:0;
+		margin:20px auto 0 auto;
+		height:calc(100% - 240px);
+	}
+}
+@media screen and (max-width:830px) {
+	.tiles-wrapper {
+		width:calc(100% - 20px);
+	}
+	.tile {
+		width:calc(50vw - 30px);
+	}
+	.transactions-toolbar {
+		width:calc(100% - 40px);
+	}
+	.filter-menu {
+		right:20px;
+	}
+	.balance-wrapper, .transactions-wrapper {
+		width:calc(100% - 60px);
+		display:block;
+		position:relative;
+		left:20px;
+	}
+	.balance-wrapper {
+		margin:90px 0 20px 0;
+	}
+}
+@media screen and (max-width:750px) {
+	.course-detail {
+		width:50%;
+	}
+	.course-detail.name {
+		display:none;
+	}
+	.notes .section {
+		display:block;
+		width:calc(100% - 60px);
+		left:10px;
+	}
+	.file-tile {
+		width:25%;
+	}
+}
+@media screen and (max-width:710px) {
+	.contact-card {
+		width:calc(100vw - 60px);
+	}
+	.account-username-wrapper, .account-password-wrapper {
+		display:block;
+		position:relative;
+		margin:0 auto 20px auto;
+		right:0;
+		left:0;
+		padding:20px 10px 1px 10px;
+	}
+	.account-button.logout {
+		display:block;
+		position:relative;
+		bottom:0;
+		top:20px;
+		left:0;
+		margin:20px auto 20px auto;
+	}
+}
+@media screen and (max-width:640px) {
+	.shopping-item .name, .shopping-list-head.name {
+		width:calc(100% - 260px);
+	}
+	.shopping-item .details, .shopping-list-head.details {
+		display:none;
+	}
+	.file-tile {
+		width:33.333333%;
+	}
+}
+@media screen and (max-width:575px) {
+	.residence-address-wrapper, .residence-rent-wrapper, .residence-wifi-wrapper {
+		width:calc(100% - 60px);
+		position:relative;
+		display:block;
+		left:20px;
+		top:20px;
+		margin:0 0 20px 0;
+	}
+}
+@media screen and (max-width:530px) {
+	.tile {
+		width:calc(100vw - 40px);
+	}
+	.transactions-list-head.date, .transaction-field.date {
+		display:none;
+	}
+	.transactions-list-head.title, .transaction-field.title {
+		width:calc(100% - 40px - 100px - 40px);
+	}
+}
+@media screen and (max-width:480px) {
+	.transaction-add-wrapper {
+		left:20px;
+		width:calc(100% - 60px);
+	}
+	.shopping-item .name, .shopping-list-head.name {
+		width:calc(100% - 120px);
+	}
+	.shopping-item .frequency, .shopping-list-head.frequency {
+		display:none;
+	}
+	.file-tile {
+		width:50%;
+	}
+}
+@media screen and (max-width:390px) {
+	.popup-wrapper {
+		width:calc(100% - 40px);
+		left:20px;
+	}
+	.account-username-wrapper, .account-password-wrapper {
+		display:block;
+		position:relative;
+		margin:0 auto 20px auto;
+		right:0;
+		left:0;
+		width:calc(100% - 60px);
+		padding:20px 10px 1px 10px;
+	}
+}
+@media screen and (max-width:350px) {
+	.balance-edit-wrapper {
+		width:calc(100% - 40px);
+		left:20px;
+	}
+	.category-item, .category-item#essentials {
+		width:50%;
+	}
+	.shopping-wrapper {
+		height:calc(100% - 300px);
+	}
+	.course-detail {
+		width:100%;
+	}
+	.course-detail.ucas {
+		display:none;
+	}
+	.file-tile {
+		width:100%;
+	}
+	.login-wrapper {
+		width:calc(100% - 60px);
+		left:20px;
+	}
+	.settings-section {
+		width:calc(100% - 40px);
+	}
+}
+@media screen and (max-width:320px) {
+	.shopping-item .name, .shopping-list-head.name {
+		width:100%;
+		text-align:center;
+	}
+	.shopping-item .price, .shopping-list-head.price {
+		display:none;
+	}
+}
+@media screen and (max-width:280px) {
+	.tile-icon-wrapper {
+		display:none;
+	}
+	.tile-title {
+		width:100%;
+		left:0;
+	}
+}
+
+@media screen and (max-height:590px) {
+	.transaction-add-wrapper {
+		height:calc(100% - 30px);
+		border-radius:0;
+		top:0;
+	}
+}
+
+@media screen and (max-height:800px) and (max-width:530px) {
+	.tile {
+		height:80px;
+	}
+	.tile-icon-wrapper svg {
+		margin:16px 0 0 0;
+	}
+}
+@media screen and (max-height:680px) and (max-width:530px) {
+	.tile {
+		height:65px;
+	}
+	.tile-icon-wrapper svg {
+		margin:8px 0 0 0;
+	}
+}
