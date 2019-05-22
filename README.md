@@ -13,4 +13,4 @@ A website to keep track of everything related to your life while studying a cour
 
 **Password**: admin
 
-![X:/University](https://www.xtrendence.com/www/images/xuniversity/xuniversity.png)
+![X:/University](https://www.xtrendence.com/www/images/xuniversity/xuniversity-light-large.png)
