@@ -764,7 +764,7 @@ $(document).ready(function() {
 			type: "POST",
 			data: { action: "logout" },
 			success: function() {
-				location.reload();
+				location.replace("./");
 			}
 		});
 	});
