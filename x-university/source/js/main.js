@@ -909,6 +909,10 @@ $(document).ready(function() {
 		var url = "index.php?page=" + ucfirst(page);
 		window.history.pushState({data: url}, url, url);
 		current_url = location.host + location.pathname + url;
+		hide_all();
+		if($(".popup-overlay").is(":visible")) {
+			$(".popup-overlay").trigger("click");
+		}
 	}
 	
 	// Finances Page Functions
