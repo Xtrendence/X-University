@@ -1,5 +1,10 @@
 $(document).ready(function() {
 	
+	// Get the current URL which will be used to determine which page to open and adds the ability to use the browser's back button.
+	
+	var current_url = window.location.href;
+	initialize();
+	
 	// Get the SVG code of the icons that will be used later on.
 	
 	var other_icon = $(".other-icon").prop("outerHTML");
@@ -18,12 +23,7 @@ $(document).ready(function() {
 	
 	$(".navbar .back-icon").on("click", function() {
 		var current_page = $(".page.active").attr("data-page");
-		if(["finances", "shopping", "documents", "settings", "account"].includes(current_page)) {
-			show_page("home");
-		}
-		if(["notes", "reminders", "files"].includes(current_page)) {
-			show_page("documents");
-		}
+		go_back(current_page);
 	});
 	$(".navbar .menu-icon").on("click", function() {
 		if($(this).hasClass("active")) {
@@ -848,6 +848,34 @@ $(document).ready(function() {
 		}
 	});
 	
+	// Allows the user to use their browser's back button.
+	
+	window.onpopstate = function() {
+		var current_page = url_param("page").toLowerCase();
+		go_back(current_page);
+	};
+	
+	// Initialization Function
+	
+	function initialize() {
+		var page = url_param("page");
+		if(page == null || typeof page == "undefined") {
+			var page = "Home";
+		}
+		show_page(page.toLowerCase());
+	}
+	
+	// Back Function
+	
+	function go_back(current_page) {
+		if(["finances", "shopping", "documents", "settings", "account"].includes(current_page)) {
+			show_page("home");
+		}
+		if(["notes", "reminders", "files"].includes(current_page)) {
+			show_page("documents");
+		}
+	}
+	
 	// Page Functions
 	
 	function show_page(page) {
@@ -878,6 +906,9 @@ $(document).ready(function() {
 		else if(page == "settings") {
 			fetch_settings();
 		}
+		var url = "index.php?page=" + ucfirst(page);
+		window.history.pushState({data: url}, url, url);
+		current_url = location.host + location.pathname + url;
 	}
 	
 	// Finances Page Functions
@@ -1267,6 +1298,19 @@ $(document).ready(function() {
 	
 	// Other Functions
 	
+	function url_param(name) {
+		var url = current_url;
+		var name = name.replace(/[\[\]]/g, '\\$&');
+		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+		var results = regex.exec(url);
+		if(!results) {
+			return null;
+		}
+		if(!results[2]) {
+			return '';
+		}
+		return decodeURIComponent(results[2].replace(/\+/g, ' '));
+	}
 	function separate_thousands(number) {
 		return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
