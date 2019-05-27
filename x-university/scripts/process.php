@@ -177,6 +177,9 @@
 			$frequency = $_POST['frequency'];
 			$price = $_POST['price'];
 			$details = $_POST['details'];
+			if(empty(trim($details))) {
+				$details = "-";
+			}
 			$category = $_POST['category'];
 			if(is_numeric($price)) {
 				$shopping[$category][$url] = array("name" => $name, "frequency" => $frequency, "price" => $price, "details" => $details, "category" => $category);
@@ -199,6 +202,9 @@
 			$frequency = $_POST['frequency'];
 			$price = $_POST['price'];
 			$details = $_POST['details'];
+			if(empty(trim($details))) {
+				$details = "-";
+			}
 			$category = $_POST['category'];
 			if(is_numeric($price)) {
 				$shopping[$category][$url] = array("name" => $name, "frequency" => $frequency, "price" => $price, "details" => $details, "category" => $category);
