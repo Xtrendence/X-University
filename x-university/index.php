@@ -100,6 +100,14 @@
 		</div>
 		<div class="notification-area"></div>
 		<?php include "./assets/pages.php"; ?>
+		<noscript>
+			<div class="noscript-wrapper">
+				<div class="noscript-container">
+					<span>You need to have JavaScript enabled to use this website.</span>
+					<a href="./"><button>Refresh</button></a>
+				</div>
+			</div>
+		</noscript>
 	</body>
 </html>
 <?php } else { include "./assets/login.php"; } ?>

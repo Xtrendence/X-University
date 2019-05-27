@@ -1917,3 +1917,48 @@ textarea {
 	font-size:16px;
 	margin:10px 0 0 0;
 }
+
+.noscript-wrapper {
+	z-index:26;
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	display:block;
+	background:rgb(0,0,0,0.9);
+}
+.noscript-container {
+	width:240px;
+	height:160px;
+	background:rgb(40,40,40);
+	position:absolute;
+	top:calc(50% - 80px);
+	left:calc(50% - 120px);
+	overflow:hidden;
+	border-radius:10px;
+}
+.noscript-container span {
+	color:rgb(245,245,245);
+	font-weight:bold;
+	font-size:18px;
+	line-height:28px;
+	padding:10px;
+	display:block;
+	text-align:left;
+}
+.noscript-container button {
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:50px;
+	color:rgb(245,245,245);
+	background:rgb(50,50,50);
+	font-weight:bold;
+	font-size:18px;
+}
+#desktop .noscript-container button:hover {
+	background:rgb(0,115,255);
+	color:rgb(250,250,250);
+}
